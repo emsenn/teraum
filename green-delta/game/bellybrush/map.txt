@@ -1,0 +1,85 @@
+  a
+   \
+  A-a-h-h-h-h-h-h-h-h-h-h-h-h-h
+    | | | | | |                \
+    a ? R ? K ?                 h-h
+    |                              \
+F-w-w-w-w-w-w-w-w-w-w-w-w-w         h-h
+  |\|/|       |   |     |  \           \
+  s-M-a       v   b   O g-P w           h
+  |\|/|       |   |    \|   |           |
+  s-M-a       v   b-b-b-g   w           h
+  |\|/|       |         |    \           \
+  s-M-a E   W-v       S-g     w           h
+  |\|/| |   | |         |     |            \
+  s-M-a-b-b-b-v-b-b-b-b-b-b-b-b             h-h
+  |/|\| | |   |             | |\               \
+k-k-k-k H M   v-m-m-m-m-m-m-m h b               h
+       \      |               |  \               \
+        k ? ?-v-e-e-e-e-e-e-e-h   b   I-I         h
+         \|   |               |   |   |/|         |
+          k   v D-D-D X V   N h   b   I-I         h
+           \  | |     | |   | |    \ /             \
+            k-v-l-l-l-l-l-l-l-h     b               h
+             \  |  /| |   |\  |      \               \
+              k T K U #-2 3 4 h       b               h
+              k      /        |       |                \
+            k-k-k   1       5-h       b                 h
+               \              |\       \               /
+                k-k         6-h 8       b             h
+                   \          |         |              \
+                  Z-k       7-h         b               h
+                     \        |          \               \
+                      k-Δ   9-h-q         b               h
+                       \     /   \         \              |
+                        k   0   ?-q         b             h
+                         \         \        |             |
+                          k-k-k     q       b             h
+                               \    |       |             |
+                                k-k-k-k-k-k-k-k-k-k-k-k-k-k-k-k-k
+k kingsroad
+s siddon st
+a arathel rd
+b boundary
+w walk
+v vickers st
+m main street
+e drainage
+h hawk st
+l slade st
+q quibble street
+M market
+F fletcher
+E Leaping Eel
+H Hamaking Warehouse
+W Westmeet Market
+I Midway
+A the Fair
+G gibbet
+S Masked Mortuary
+O Southbank House
+P Par Weaponry
+G Grapevine
+Y The Wynd
+N Money changer
+V Sovel's
+D Redbrick Flats
+T Steamworks
+K Netmaker
+U Kaldura's House
+R Chandler's Guild
+K Red Keep
+1 Ramen shop
+2 Butcher
+3 barber-surgeon
+4 cheese
+5 Cheers
+6 Beynway Boarding House
+7 Undertaker
+8 Asylum
+9 Meig's Mercantile
+0 Freddy's Fuelds
+Δ Mother Joffa's Orphanage & Laundromat
+Z Old Bastion
+X cobbler
+I Green Island
