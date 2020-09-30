@@ -1,6 +1,9 @@
 #lang racket
 
-(require qtops/qualities/area)
+(require qtops/qualities/area
+         qtops/qualities/lookable
+         qtops/qualities/npc
+         "../../../../../../qualities/brusher.rkt")
 
 (provide <>masked-mortuary)
 

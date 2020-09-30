@@ -57,18 +57,6 @@
      "Teraum has 12 months of 30 days, with several holidays located between months throughout the year."
      "The first sentient species on Teraum were the goblins, who escaped from the Undermuck in the Worldkeep."
      "Teraum was created as a garden for the gods, adjacent to the Worldkeep, where their various magic works and creatures were housed."))
-  (((((t 'area 'green-delta)
-       'area 'game)
-      'area 'bellybrush)
-     'area 'east-kingsroad)
-    'set-exit! 'east
-    ((t 'area 'central-plains) 'area 'west-kingsroad-2))
-  (((t 'area 'central-plains) 'area 'west-kingsroad-2)
-   'set-exit! 'west
-   ((((t 'area 'green-delta)
-        'area 'game)
-       'area 'bellybrush)
-    'area 'east-kingsroad))
   (t 'set-procedure! 'spawn-room (λ () ((((t 'area 'green-delta) 'area 'game) 'area 'ack) 'area 'poplar-gate)))
   (t 'schedule-event! (t 'mudsocket-tick!))
   t)

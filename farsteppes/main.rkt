@@ -18,7 +18,7 @@
              (culver-estate ,<>culver-estate)
              (helmets-dent ,<>helmets-dent)
              (road-to-culver-estate ,<>road-to-culver-estate)
-             (kingroad ,<>kingsroad))
+             (kingsroad ,<>kingsroad))
    #:links '((castle-oru "southwest" "northeast" helmets-dent)
              (helmets-dent
               "southeast" "northwest"

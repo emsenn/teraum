@@ -1,13 +1,11 @@
 #lang racket
 
 (require qtops/qualities/area
-         qtops/qualities/region
          "../../../../../../qualities/brusher.rkt")
 
-(provide <>beggars-alley)
+(provide <>quibble-street)
 
-
-(define (<>beggars-alley t)
+(define (<>quibble-street t)
   (<>Brusher
    (<>area
-    t #:name "Beggar's Alley")))
+    t #:name "Quibble Street")))

@@ -1,6 +1,8 @@
 #lang racket
 
-(require qtops/qualities/area)
+(require qtops/qualities/area
+         qtops/qualities/region
+         "../../../../../../qualities/brusher.rkt")
 
 (provide <>southbank-house)
 
@@ -8,8 +10,7 @@
   (<>Brusher
    (<>area
     t #:name "porch"
-    #:description "This is the porch of the Southbank House, which wraps around the west and south of the property. Steps lead down to the yard."
-    #:contents (list <>holman-holder))))
+    #:description "This is the porch of the Southbank House, which wraps around the west and south of the property. Steps lead down to the yard.")))
 
 (define (<>yard t)
   (<>Brusher

@@ -1,6 +1,7 @@
 #lang racket
 
-(require qtops/qualities/area)
+(require qtops/qualities/area
+         "../../../../../../qualities/brusher.rkt")
 
 (provide <>par-weaponry)
 
