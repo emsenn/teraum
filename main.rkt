@@ -59,6 +59,9 @@
      "Teraum was created as a garden for the gods, adjacent to the Worldkeep, where their various magic works and creatures were housed."))
   (t 'set-procedure! 'spawn-room (λ () (((((t 'area 'green-delta) 'area 'game) 'area 'bellybrush) 'area 'gibbet-street) 'area 'gibbet-street)))
   (t 'schedule-event! (t 'mudsocket-tick!))
+  ((λ () (map (λ (t) ((t 'with-procedure~~ 'animate~~)))
+            (t 'things))
+    (void)))
   t)
 
 (define Teraum (<>teraum (create-thing)))
