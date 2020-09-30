@@ -15,11 +15,15 @@
 (define (<>kalduras-house t)
   (<>area t #:name "Kaldura's House"))
 (define (<>cobblers t)
-  (<>area t #:name "cobblers"))
+  (<>area
+   t #:name "cobblers"
+   #:description "This is a cobblers shop, as well as a cobbler shop. While the owner started mending shoes, confusion from tourists motivated em to begin stocking the pastry as well."))
 (define (<>ramen-shop t)
   (<>area t #:name "ramen shop"))
 (define (<>butcher t)
-  (<>area t #:name "butcher"))
+  (<>Brusher
+   (<>area t #:name "butcher")
+   #:trivia '("The butcher on Slade St. in Bellybrush is known for their aged sausages.")))
 (define (<>moneychanger t)
   (<>area t #:name "moneychanger"))
 (define (<>barber-surgeon t)

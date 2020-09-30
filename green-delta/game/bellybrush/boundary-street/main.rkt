@@ -63,4 +63,5 @@
               (boundary-street-3 east west boundary-street-4)
               (boundary-street-4 east west boundary-street-5)
               (boundary-street-5 southeast northwest
-                                 boundary-street-6)))))
+                                 boundary-street-6)))
+   #:trivia '("Before the Walk was built, Boundary Street was Bellybrush's original riverfront.")))

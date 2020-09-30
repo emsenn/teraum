@@ -37,7 +37,9 @@ GIBBET STREET
 M Madrins Shack  m Masked Mortuary
 
 HARGROVE STREET
-A-1    A Arathel Street
+F
+ \     F The Fair
+  1    A Arathel Street
  /|\   R Redkeep
 R C 2  C Chandlers Guild
     |  K Kingsroad
@@ -50,7 +52,8 @@ HAWK STREET
  D-1    S Slade Street
    |    C Cheers
  S-2    A Asylum
-   |    U Undertaker
+  /|    b Beynway Boarding House
+ b |    U Undertaker
  C-3    T Thrift shop
   /|\   Q Quibble Street
  U | A

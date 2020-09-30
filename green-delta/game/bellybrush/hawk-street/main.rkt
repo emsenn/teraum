@@ -1,15 +1,24 @@
 #lang racket
 
 (require qtops/qualities/area
+         qtops/qualities/noise
          qtops/qualities/region
          "../../../../../../qualities/brusher.rkt")
 
 (provide <>hawk-street)
 
+(define (<>beynway-boarding-house t)
+  (<>Brusher
+   (<>area t #:name "Beynway Boarding House")
+   #:trivia '("Beynway Boarding House is one of Bellybrush's oldest hotels.")))
 (define (<>cheers t)
   (<>area t #:name "Cheers"))
 (define (<>asylum t)
-  (<>area t #:name "Asylum"))
+  (<>noisy
+   (<>area
+    t #:name "Asylum"
+    #:description "The asylum in Bellybrush was one of the town's most beloved organizations for most of the last century. As human people from around the world migrated toward Ack, the asylum helped them get oriented with a new way of living. But when Bellybrush was absorbed into the Enclave, the asylum was restructured as a detention center. The area in front of the asylum is all that's accessible: a three-storey brick facade, all windows boarded up.")
+   #:noises '("A flurry of laughs comes from higher in the building, muffled by the brickwork.")))
 (define (<>undertaker t)
   (<>area t #:name "Undertaker"))
 (define (<>thrift-shop t)
@@ -32,11 +41,14 @@
               (asylum ,<>asylum)
               (undertaker ,<>undertaker)
               (thrift-shop ,<>thrift-shop)
+              (beynway-boarding-house ,<>beynway-boarding-house)
               (hawk-street-1 ,<>hawk-street-1)
               (hawk-street-2 ,<>hawk-street-2)
               (hawk-street-3 ,<>hawk-street-3)
               (hawk-street-4 ,<>hawk-street-4))
-    #:links '((hawk-street-3 southeast northwest asylum)
+    #:links '((hawk-street-2 southwest northeast
+                             beynway-boarding-house)
+              (hawk-street-3 southeast northwest asylum)
               (hawk-street-3 southwest northeast undertaker)
               (hawk-street-3 west east cheers)
               (hawk-street-4 west east thrift-shop)
