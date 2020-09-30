@@ -49,8 +49,11 @@
 
 (define (<>carper-falls t)
   (<>Ackian
+   (<>noisy
     (<>area
-      t #:name "Carper Falls")))
+     t #:name "Carper Falls"
+     #:description "Carper Falls was just another suburb of Ack a few years ago, but after the Fire last spring, the Red Union nominated it as a \"sanctuary\" and began buying properties, converting them into communal living spaces for the masses of people displaced from other Wards. As Reconstruction efforts allowed those refugees to move back home, the Falls were maintained for the new influx of refugees coming into the city from around the Old World. Poplar Gate, south of here, is how those refugees first enter the city, and Carper Falls is where they first move. Before its conversion into a \"sanctuary,\" Carper Falls was a relatively prosperous residential neighborhood, so most of the communal houses are rather large estates that have fallen into the unique disrepair that only prolonged heavy use can cause. East of here is Piketown, and west is Sugar Heights, both residential areas of town, while northwest is the Brass Ward, where many of the reidents of surrounding wards work at the foundries.")
+    #:noises '("A sniff of acridity wafts in from the Brass Ward, the fumes from producing some novel alloy."))))
 
 (define (<>copper-ward t)
   (<>Ackian
@@ -68,7 +71,13 @@
 
 (define (<>piketown t) (<>area t #:name "Piketown"))
 (define (<>piketown-gate t) (<>area t #:name "Piketown Gate"))
-(define (<>poplar-gate t) (<>area t #:name "Poplar Gate"))
+(define (<>poplar-gate t)
+  (<>noisy
+   (<>area
+    t #:name "Poplar Gate"
+    #:description "This is Poplar Gate, leading off the Widdershins Road north into Carper Falls. The gate, actually constructed from pine, is built into a pine-and-stone wall. A long queue of people, most carrying heavy bags, stands in front of the gate, blocked by wooden barricades and Union clerks. On this side of the wall, a few people have stepped out of line to trade the things they carry.")
+   #:noises '("A refugee near the head of the line tries to bolt through the barricades, but is stopped by a Unionist clerk and sent back to the queue."
+              "There is a perpetual rustle of urban life coming from behind Ack's walls.")))
 
 (define (<>red-ward-buildings t)
   (<>lookable
