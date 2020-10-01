@@ -22,7 +22,8 @@
     t #:name "roadside flowers"
     #:nouns '("flowers")
     #:description "Some flowers grow here by the side of the road.")
-   #:return <>flower))
+   #:return <>flower
+   #:frequency 1))
 
 (define (<>fletchers t)
   (<>area t #:name "Fletchers"))
