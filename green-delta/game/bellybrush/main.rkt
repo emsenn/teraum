@@ -30,6 +30,41 @@
   (<>npc
    t #:name "Holman Holder"))
 
+(define (<>leather-boots t)
+  (<>lookable
+   (<>object t)
+   #:name "pair of hard leather boots"
+   #:description "This is a pair of hard leather boots. They look rigid, though whether its intentional or from age and lack of care is unclear."))
+
+(define (<>linen-shirt t)
+  (<>lookable
+   (<>object t)
+   #:name "linen shirt"
+   #:description "This is a light linen shirt."))
+
+(define (<>cotton-trousers t
+                           #:style [style 'plain]
+                           #:color [color "brown"])
+  (<>lookable
+   (<>object t)
+   #:name
+   (cond [(eq? style 'plain)
+          (format "~a trousers" color)]
+         [(eq? style 'tattered)
+          (format "tattered ~a trousers")])
+   #:nouns '("trousers")
+   #:adjectives
+   (cond [(eq? style 'plain)
+          `("plain" "simple" ,color)]
+         [(eq? style 'tattered)
+          `("tattered" "torn" ,color)])
+   #:description
+   (cond [(eq? style 'plain)
+          (format "This is a simple pair of ~a cotton trousers."
+                  color)]
+         [(eq? style 'tattered)
+          (format "This is a tattered pair of ~a cotton trousers. The seams have started to pull apart, and there are a few small tears in the fabric." color)])
+
 (define (<>bellybrush t)
   (<>Brusher
    (<>region
@@ -119,4 +154,5 @@
               ((vickers-street vickers-street-1)
                west east
                (boundary-street westmeet))))
-   #:trivia '("The town of Bellybrush was settled in 701bB")))
+   #:trivia '("The town of Bellybrush was settled in 701bB"
+              "The town of Bellybrush was added to the Teraum MUD in rwOctober, 2020.")))

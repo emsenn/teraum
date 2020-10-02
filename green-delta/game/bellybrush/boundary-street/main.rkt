@@ -11,11 +11,17 @@
    t #:name "Leaping Eel"
    #:description "The Leaping Eel was once the tavern travelers thought of when they remembered Bellybrush. Located where the Kingsroad intersects Arathel Street, almost every person moving through the Green Delta would walk by the Leaping Eel. Now that Bellybrush has been incorporated into the GAME, the Eel has leaned into its \"townie\" roots, proudly demonstrating its status as the owner of The Brushers, the local stick-ball team. Flags, the dusty orange and cream white colors of the team, cover nearly every wall in their horizontal stripes, with pieces of sports equipment nailed between them. Booths line the bottom of each wall, patrons and waitstaff milling about."))
 (define (<>hamaking-warehouse t)
-  (<>area t #:name "Hamaking Warehouse"))
+  (<>area
+   t #:name "Hamaking Warehouse"
+   #:description "This is Hamaking Warehouse, a large brick structure full of shelves, crates, boxes, and other means of storing stuff."))
 (define (<>central-park-1 t)
-  (<>area t #:name "Central Park"))
+  (<>area
+   t #:name "Central Park"
+   #:description "This is the west side of Bellybrush's Central Park. The area is mostly just a grass field, with a very large old stump near the center."))
 (define (<>central-park-2 t)
-  (<>area t #:name "Central Park"))
+  (<>area
+   t #:name "Central Park"
+   #:description "This is the east side of Bellybrush's Central Park."))
 (define (<>westmeet t)
   (<>area t #:name "Westmeet"))
 (define (<>island t)
