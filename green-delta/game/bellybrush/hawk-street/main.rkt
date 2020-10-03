@@ -1,11 +1,16 @@
 #lang racket
 
 (require qtops/qualities/area
+         qtops/qualities/npc
          qtops/qualities/noise
          qtops/qualities/region
          "../../../../../../qualities/brusher.rkt")
 
 (provide <>hawk-street)
+
+(define (<>jessica-suri t)
+  (<>npc
+   t #:name "Jessica Suri"))
 
 (define (<>beynway-boarding-house t)
   (<>Brusher
@@ -20,12 +25,17 @@
     #:description "The asylum in Bellybrush was one of the town's most beloved organizations for most of the last century. As human people from around the world migrated toward Ack, the asylum helped them get oriented with a new way of living. But when Bellybrush was absorbed into the Enclave, the asylum was restructured as a detention center. The area in front of the asylum is all that's accessible: a three-storey brick facade, all windows boarded up.")
    #:noises '("A flurry of laughs comes from higher in the building, muffled by the brickwork.")))
 (define (<>undertaker t)
-  (<>area t #:name "Undertaker"))
+  (<>area
+   t #:name "Undertaker"
+   #:description "This is the lobby of the undertaker in Bellybrush. Painted pale blue, rows of windows around the top of the walls let in enough natural light to highlight how clean an environment it is."
+   #:contents (list <>jessica-suri)))
 (define (<>thrift-shop t)
   (<>area t #:name "thrift shop"))
 
 (define (<>hawk-street-1 t)
-  (<>area t #:name "Hawk Street"))
+  (<>area
+   t #:name "Hawk Street"
+   #:description "This is Hawk Street just south of its north end, at Boundary Street. Rows of narrow two-storey houses go down the east side of the road, each looking more run-down than the previous. There's a gully, swampy with stinky water, to the west."))
 (define (<>hawk-street-2 t)
   (<>area t #:name "Hawk Street"))
 (define (<>hawk-street-3 t)

@@ -1,6 +1,8 @@
 #lang racket
 
 (require qtops/qualities/area
+         qtops/qualities/lookable
+         qtops/qualities/object
          qtops/qualities/npc
          qtops/qualities/region
          "../../../../../qualities/brusher.rkt"
@@ -63,7 +65,7 @@
           (format "This is a simple pair of ~a cotton trousers."
                   color)]
          [(eq? style 'tattered)
-          (format "This is a tattered pair of ~a cotton trousers. The seams have started to pull apart, and there are a few small tears in the fabric." color)])
+          (format "This is a tattered pair of ~a cotton trousers. The seams have started to pull apart, and there are a few small tears in the fabric." color)])))
 
 (define (<>bellybrush t)
   (<>Brusher

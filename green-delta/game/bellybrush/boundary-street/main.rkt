@@ -23,22 +23,38 @@
    t #:name "Central Park"
    #:description "This is the east side of Bellybrush's Central Park."))
 (define (<>westmeet t)
-  (<>area t #:name "Westmeet"))
+  (<>area
+   t #:name "Westmeet"
+   #:description "This is Westmeet, a small market in the heart of Bellybrush."))
 (define (<>island t)
-  (<>area t #:name "Island"))
+  (<>area
+   t #:name "island"
+   #:description "This is a small island off the south bank of the Green River as it runs through the town of Bellybrush. Patches of cattails grow between the bank and the island, which itself is covered in a creeping phlox."))
 
 (define (<>boundary-street-1 t)
-  (<>area t #:name "Boundary Street"))
+  (<>area
+   t #:name "Boundary St"
+   #:description "This is the west end of Boundary Street, where it ends into Arathel Street. North of here is the Leaping Eel, a large tavern. Hamaking Warehouse is to the south."))
 (define (<>boundary-street-2 t)
-  (<>area t #:name "Boundary Street"))
+  (<>area
+   t #:name "Boundary St"
+   #:description "This is Boundary Street, north of the west end of Central Park."))
 (define (<>boundary-street-3 t)
-  (<>area t #:name "Boundary Street"))
+  (<>area
+   t #:name "Boundary St"
+   #:description "This is Boundary Street, north of the east end of Central Park."))
 (define (<>boundary-street-4 t)
-  (<>area t #:name "Boundary Street"))
+  (<>area
+   t #:name "Boundary St & Vickers St"
+   #:description "This is Boundary Street where it intersects with Vickers Street."))
 (define (<>boundary-street-5 t)
-  (<>area t #:name "Boundary Street"))
+  (<>area
+   t #:name "Boundary St, Gibbet St & Hawk St"
+   #:description "This is Boundary Street, where it intersects with Gibbet Street to the North and Hawk Street to the South."))
 (define (<>boundary-street-6 t)
-  (<>area t #:name "Boundary Street"))
+  (<>area
+   t #:name "Boundary St"
+   #:description "This is the eastern end of Boundary Street, where it runs parallel with the south bank of the Green River. There is a wooden bridge leading to a small island in the river, northeast of here. Kingsroad is to the south."))
 
 (define (<>boundary-street t)
   (<>Brusher
@@ -72,4 +88,5 @@
               (boundary-street-4 east west boundary-street-5)
               (boundary-street-5 southeast northwest
                                  boundary-street-6)))
-   #:trivia '("Before the Walk was built, Boundary Street was Bellybrush's original riverfront.")))
+   #:trivia '("Before the Walk was built, Boundary Street was Bellybrush's original riverfront."
+              "Boundary Street was added to the Teraum MUD in the first week of rwOctober, 2020.")))
