@@ -4,14 +4,14 @@
          qtops/qualities/mudsocket-server
          qtops/qualities/region
          qtops/qualities/time
-         "../../qualities/teraum-universe.rkt"
-         "../../qualities/teraumi.rkt"
-         "central-plains/main.rkt"
-         "cut/main.rkt"
-         "farsteppes/main.rkt"
-         "gloaming/main.rkt"
-         "green-delta/main.rkt"
-         "halfling-country/main.rkt")
+         "qualities/teraum-universe.rkt"
+         "qualities/teraumi.rkt"
+         "regions/central-plains/main.rkt"
+         "regions/cut/main.rkt"
+         "regions/farsteppes/main.rkt"
+         "regions/gloaming/main.rkt"
+         "regions/green-delta/main.rkt"
+         "regions/halfling-country/main.rkt")
 
 (provide <>teraum)
 
