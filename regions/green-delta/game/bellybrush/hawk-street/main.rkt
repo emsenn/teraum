@@ -35,13 +35,19 @@
 (define (<>hawk-street-1 t)
   (<>area
    t #:name "Hawk Street"
-   #:description "This is Hawk Street just south of its north end, at Boundary Street. Rows of narrow two-storey houses go down the east side of the road, each looking more run-down than the previous. There's a gully, swampy with stinky water, to the west."))
+   #:description "This is Hawk Street just south of its north end, at Boundary Street. Rows of narrow two-storey houses go down the east side of the road, each looking more run-down than the previous. There's a gully, swampy with stinky water, to the west. Hawk Street continues to the south."))
 (define (<>hawk-street-2 t)
-  (<>area t #:name "Hawk Street"))
+  (<>area
+   t #:name "Hawk Street"
+   #:description "This is Hawk Street, in the town of Bellybrush. There's a four-storey skinny brick building at the southwest of the intersection. Slade Street is to the west of here. Hawk Street continues north and south."))
 (define (<>hawk-street-3 t)
-  (<>area t #:name "Hawk Street"))
+  (<>area
+   t #:name "Hawk Street"
+   #:description "This is Hawk Street, in the town of Bellybrush. There's a bar to the west side of the street, and a non-descript wood building painted light blue south of that. Across the street is a brick windowless building. The street continues continues north and south."))
 (define (<>hawk-street-4 t)
-  (<>area t #:name "Hawk Street"))
+  (<>area
+   t #:name "Hawk Street"
+   #:description "This is the south end of Hawk Street. To the west is a thrift store, and Quibble Street is to the southeast. Hawk Street continues to the north."))
 
 (define (<>hawk-street t)
   (<>Brusher

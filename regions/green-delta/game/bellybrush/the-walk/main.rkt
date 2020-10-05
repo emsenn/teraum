@@ -29,11 +29,17 @@
   (<>area t #:name "Fletchers"))
 
 (define (<>the-walk-1 t)
-  (<>area t #:name "The Walk"))
+  (<>area
+   t #:name "The Walk"
+   #:description "This is the west end of the Walk, north of Siddon Street. To the southeast is the town's largest market. The Walk continues to the east."))
 (define (<>the-walk-2 t)
-  (<>area t #:name "The Walk"))
+  (<>area
+   t #:name "The Walk"
+   #:description "This is the Walk where it's bisected by Arathel Street. Bellybrush's largest market is to the southwest. The Walk runs east and west from here."))
 (define (<>the-walk-3 t)
-  (<>area t #:name "The Walk"))
+  (<>area
+   t #:name "The Walk"
+   #:description "This is the Walk, north of Vickers Street. The Walk continues east and west from here. To the southeast is the entrance to a narrow alley."))
 (define (<>the-walk-4 t)
   (<>area t #:name "The Walk"
           #:description "This is the east end of the Walk. There are some flowers on the north side of the road, down the bank."

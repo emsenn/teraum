@@ -39,7 +39,7 @@ M Madrins Shack  m Masked Mortuary
 HARGROVE STREET
 F
  \     F The Fair
-  1    A Arathel Street
+A-1    A Arathel Street
  /|\   R Redkeep
 R C 2  C Chandlers Guild
     |  K Kingsroad

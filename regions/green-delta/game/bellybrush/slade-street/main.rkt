@@ -30,13 +30,21 @@
   (<>area t #:name "barber-surgeon"))
 
 (define (<>slade-street-1 t)
-  (<>area t #:name "Slade Street"))
+  (<>area
+   t #:name "Slade Street"
+   #:description "This is Slade Street, just east of the Kingsroad. Vickers Street is north of here, and Slade Street continues to the east."))
 (define (<>slade-street-2 t)
-  (<>area t #:name "Slade Street"))
+  (<>area
+   t #:name "Slade Street"
+   #:description "Slade Street runs east and west from here. To the north is an apartment building and to the south is some sort of store."))
 (define (<>slade-street-3 t)
-  (<>area t #:name "Slade Street"))
+  (<>area
+   t #:name "Slade Street"
+   #:description "Slade Street runs east and west from here. To the north is a shoe store. To the south is a large house, and to the southwest is a netmaking store."))
 (define (<>slade-street-4 t)
-  (<>area t #:name "Slade Street"))
+  (<>area
+   t #:name "Slade Street"
+   #:description "This is the east end of Slade Street, just west of Hawk Street. To the northwest is a moneychanger, to the southeast is a barber, to the south is a butcher, and to the southwest is a noodle shop."))
 
 (define (<>slade-street t)
   (<>Brusher

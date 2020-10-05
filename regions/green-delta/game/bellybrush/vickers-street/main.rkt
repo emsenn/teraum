@@ -7,9 +7,11 @@
 (provide <>vickers-street)
 
 (define (<>vickers-street-1 t)
-  (<>area t #:name "Vickers Street"))
+  (<>area t #:name "Vickers Street"
+          #:description "This is Vickers Street, north of where it intersects with Boundary Street and south of where it intersects with the Walk. Westmeet is to the west of here."))
 (define (<>vickers-street-2 t)
-  (<>area t #:name "Vickers Street"))
+  (<>area t #:name "Vickers Street"
+          #:description "This is the south end of Vickers Sreet, between Boundary Street to the north and Slade Street to the south."))
 
 
 
