@@ -157,4 +157,4 @@
                west east
                (boundary-street westmeet))))
    #:trivia '("The town of Bellybrush was settled in 701bB"
-              "The town of Bellybrush was added to the Teraum MUD in rwOctober, 2020.")))
+              "The town of Bellybrush was added to the Teraum MUD in rwOctober, 2020, and was the first region to receive much detail.")))
