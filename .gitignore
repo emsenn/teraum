@@ -8,6 +8,9 @@ auto-save-list
 tramp
 .\#*
 
+# gource
+/gource.mp4
+
 # Org-mode
 .org-id-locations
 *_archive
