@@ -12,10 +12,13 @@
          set-operator-command!)
 
 ; A operator is an:
+; - character
+; - mudserver (mudserver)
 ; - in (???)
 ; - out (???)
 ; - ip (???)
 ; - port (???)
+; - commands (hash-table)
 (struct operator
   character
   ([mudserver]
@@ -54,7 +57,7 @@
              (string=? (substring argument 0 2) "--"))
         (define split-argument (string-split argument "="))
         (define argument-key (substring (car split-argument) 2))
-        (define argument-value (cdr split-argument))
+        (define argument-value (string-join (cdr split-argument)))
         (hash-set! results argument-key argument-value)]
        [(string=? (substring argument 0 1) "-")
         (map
