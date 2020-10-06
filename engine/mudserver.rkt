@@ -84,5 +84,3 @@
         (sleep clock-speed)
         (mudserver-loop)))))
   (mudserver-clock server))
-
-(define a-mud (start-mudserver! (make-mudserver) 0.2))
