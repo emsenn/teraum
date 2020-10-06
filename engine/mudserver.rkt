@@ -56,7 +56,9 @@
     (message-operator!
      op "(Welcome to Teraum, creator.)")
     (set-operator-command! op 'new-area!
-                           (make-new-area!-command op)))
+                           (make-new-area!-command op))
+    (set-operator-command! op 'set-area-name!
+                           (make-set-area-name!-command op)))
   (let ([spawn (world-ref (mudserver-world server)
                           '15fd6ad9-0632-4212-8c6b-968d0ff04e30)])
     (set-character-location! op spawn)
