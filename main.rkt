@@ -1,8 +1,9 @@
 #lang racket
 
-(require "engine/mudserver.rkt")
+(require "engine/mudserver.rkt"
+         "engine/world.rkt")
 
-(define teraum
-  (start-mudserver!
-   (make-mudserver)
-   0.2))
+(define teraum (make-mudserver
+                #:world (load-world "world/")))
+
+(start-mudserver! teraum 0.2)

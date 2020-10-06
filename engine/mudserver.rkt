@@ -1,6 +1,12 @@
 #lang racket
 
-(require "operator.rkt")
+(require "basic-commands.rkt"
+         "operator.rkt"
+         "world.rkt")
+
+(provide (struct-out mudserver)
+         make-mudserver
+         start-mudserver!)
 
 ; A mudserver is a
 ; - tcp-listener (object? i think)
@@ -10,13 +16,15 @@
 (struct mudserver
   ([tcp-listener]
    [active-operators #:mutable]
+   [world #:mutable]
    [tick #:mutable]
    [clock #:mutable]))
 
 ; make-mudserver
 ;   [int] -> mudserver
-(define (make-mudserver #:port [port 4242])
-  (mudserver (tcp-listen port 5 #t) '() 0 (void)))
+(define (make-mudserver #:port [port 4242]
+                        #:world [world (make-hash)])
+  (mudserver (tcp-listen port 5 #t) '() world 0 (void)))
 
 ; accept-mudserver-operator
 ;   mudserver -> void
@@ -30,15 +38,21 @@
     (local-ip local-port remote-ip remote-port)
     (tcp-addresses in #t))
   (define op
-    (operator in out remote-ip remote-port (make-hash)))
+    (make-operator in out remote-ip remote-port))
   (set-operator-command! op 'commands (make-commands-command op))
+  (set-operator-command! op 'look (make-look-command op))
   (set-mudserver-active-operators!
    server
    (append (mudserver-active-operators server)
            (list op)))
   (message-operator!
    op
-   "Your connection to the MUDSocket server has been accepted."))
+   (format
+    "Your connection to Teraum from ~a has been accepted."
+    (format "~a:~a" (operator-ip op) (operator-port op))))
+  (set-character-location!
+   op (world-ref (mudserver-world server)
+                 '42a2b387-ee3a-44af-991b-254a39369d56)))
 
 (define (remove-mudserver-operator server op)
   (set-mudserver-active-operators!

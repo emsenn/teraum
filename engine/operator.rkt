@@ -1,11 +1,15 @@
 #lang racket
 
-(provide (struct-out operator)
+(require uuid
+         "character.rkt")
+
+(provide (all-from-out "character.rkt")
+         (struct-out operator)
+         make-operator
          parse-operator-line
          message-operator!
          operator-command
-         set-operator-command!
-         make-commands-command)
+         set-operator-command!)
 
 ; A operator is an:
 ; - in (???)
@@ -13,11 +17,27 @@
 ; - ip (???)
 ; - port (???)
 (struct operator
+  character
   ([in]
    [out]
    [ip]
    [port]
    [commands #:mutable]))
+
+(define (make-operator in
+                       out
+                       ip
+                       port
+                       #:name [name "operator"]
+                       #:description
+                       [description "This is an operator."]
+                       #:contents [contents '()]
+                       #:location [location #f]
+                       #:inventory [inventory '()]
+                       #:commands [commands (make-hash)])
+  (operator
+   (uuid-string) name description location inventory
+   in out ip port commands))
 
 ; parse-arguments
 ;   listof string -> hash-table
@@ -72,6 +92,7 @@
 ;   operator string -> void
 ; Sends operator the string through eir operator-out.
 (define (message-operator! op line)
+  (printf "Messaging ~a: ~a\n" (character-name op) line)
   (with-handlers
     ([exn?
       (λ (e)
@@ -90,11 +111,4 @@
   (hash-ref (operator-commands op) key))
 
 (define (set-operator-command! op key proc)
-  (hash-set! (operator-commands op) key proc)
-  (printf "BUZZ! ~a" (operator-commands op)))
-
-(define ((make-commands-command op) args)
-  (printf "BANG! ~a" (operator-commands op))
-  (message-operator!
-   op
-   (format "~a" (hash-keys (operator-commands op)))))
+  (hash-set! (operator-commands op) key proc))
