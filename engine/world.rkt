@@ -5,6 +5,7 @@
 
 (provide (struct-out world)
          make-world
+         save-world-area
          load-world
          world-ref)
 
@@ -13,6 +14,12 @@
                       [path #:mutable]))
 (define (make-world [path "world/"])
   (world (make-hash) path))
+
+(define (save-world-area this-world this-area)
+  (current-directory (world-path this-world))
+  (with-output-to-file (area-id this-area)
+    (λ () (write (serialize this-area)))
+    #:exists 'replace))
 
 (define (load-world this-world)
   (current-directory (world-path this-world))

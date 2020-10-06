@@ -13,8 +13,8 @@
     (message-operator! op "Syntax: set-area-name! <new-name>"))
   (set-area-name! (character-location op)
                   (hash-ref args 'line))
-  (save-area (character-location op)
-             (world-path (character-world op))))
+  (save-world-area (character-world op)
+                   (character-location op)))
 
 (define ((make-set-area-description!-command op) args)
   (unless (hash-has-key? args 'line)
@@ -22,15 +22,14 @@
      op "Syntax: set-area-description! <new-description>"))
   (set-area-description! (character-location op)
                   (hash-ref args 'line))
-  (save-area (character-location op)
-             (world-path (character-world op))))
+  (save-world-area (character-world op)
+                   (character-location op)))
 
 (define ((make-new-area!-command op) args)
   (unless (hash-has-key? args "exit")
     (message-operator! op "Syntax: new-area! --exit=<dir> [name]"))
   (define new-area
-    (make-area (world-path (character-world op))
-               #:name (if (hash-has-key? args 'line)
+    (make-area #:name (if (hash-has-key? args 'line)
                           (hash-ref args 'line)
                           "new area")))
   (set-area-exit! (character-location op)
@@ -39,9 +38,9 @@
   (set-area-exit! new-area
                   "back"
                   (area-id (character-location op)))
-  (save-area (character-location op)
-             (world-path (character-world op)))
-  (save-area new-area
-             (world-path (character-world op)))
+  (save-world-area (character-world op)
+                   (character-location op))
+  (save-world-area (character-world op)
+                   new-area)
   (message-operator!
    op "Successfully made and linked new area."))
