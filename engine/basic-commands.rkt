@@ -17,6 +17,14 @@
   (if (character-location op)
       (message-operator!
        op
-       (format "You are: ~a" (area-name (character-location op))))
+       (format "[  ~a  ]\n~a~a"
+               (area-name (character-location op))
+               (area-description (character-location op))
+               (if (null? (hash-keys
+                           (area-exits (character-location op))))
+                   ""
+                   (format "Exits: ~a" (hash-keys
+                                        (area-exits
+                                         (character-location op)))))))
       (message-operator!
        op "You aren't anyplace.")))

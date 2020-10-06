@@ -32,11 +32,12 @@
                        #:description
                        [description "This is an operator."]
                        #:contents [contents '()]
+                       #:world [world #f]
                        #:location [location #f]
                        #:inventory [inventory '()]
                        #:commands [commands (make-hash)])
   (operator
-   (uuid-string) name description location inventory
+   (uuid-string) name description world location inventory
    in out ip port commands))
 
 ; parse-arguments

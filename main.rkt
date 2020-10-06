@@ -4,6 +4,7 @@
          "engine/world.rkt")
 
 (define teraum (make-mudserver
-                #:world (load-world "world/")))
+                (load-world
+                 (make-world "/home/emsenn/dev/teraum/world/"))))
 
 (start-mudserver! teraum 0.2)

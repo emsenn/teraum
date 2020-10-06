@@ -1,6 +1,8 @@
 #lang racket
 
-(require "basic-commands.rkt"
+(require "area.rkt"
+         "basic-commands.rkt"
+         "creator-commands.rkt"
          "operator.rkt"
          "world.rkt")
 
@@ -22,8 +24,7 @@
 
 ; make-mudserver
 ;   [int] -> mudserver
-(define (make-mudserver #:port [port 4242]
-                        #:world [world (make-hash)])
+(define (make-mudserver world #:port [port 4242])
   (mudserver (tcp-listen port 5 #t) '() world 0 (void)))
 
 ; accept-mudserver-operator
@@ -38,7 +39,8 @@
     (local-ip local-port remote-ip remote-port)
     (tcp-addresses in #t))
   (define op
-    (make-operator in out remote-ip remote-port))
+    (make-operator in out remote-ip remote-port
+                   #:world (mudserver-world server)))
   (set-operator-command! op 'commands (make-commands-command op))
   (set-operator-command! op 'look (make-look-command op))
   (set-mudserver-active-operators!
@@ -50,9 +52,16 @@
    (format
     "Your connection to Teraum from ~a has been accepted."
     (format "~a:~a" (operator-ip op) (operator-port op))))
-  (set-character-location!
-   op (world-ref (mudserver-world server)
-                 '42a2b387-ee3a-44af-991b-254a39369d56)))
+  (when (string=? (operator-ip op) "::1")
+    (message-operator!
+     op "(Welcome to Teraum, creator.)")
+    (set-operator-command! op 'new-area!
+                           (make-new-area!-command op)))
+  (let ([spawn (world-ref (mudserver-world server)
+                          '15fd6ad9-0632-4212-8c6b-968d0ff04e30)])
+    (set-character-location! op spawn)
+    (add-thing-to-area! op spawn)))
+
 
 (define (remove-mudserver-operator server op)
   (set-mudserver-active-operators!
