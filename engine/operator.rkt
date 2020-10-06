@@ -18,13 +18,15 @@
 ; - port (???)
 (struct operator
   character
-  ([in]
+  ([mudserver]
+   [in]
    [out]
    [ip]
    [port]
    [commands #:mutable]))
 
-(define (make-operator in
+(define (make-operator this-mudserver
+                       in
                        out
                        ip
                        port
@@ -38,7 +40,7 @@
                        #:commands [commands (make-hash)])
   (operator
    (uuid-string) name description world location inventory
-   in out ip port commands))
+   this-mudserver in out ip port commands))
 
 ; parse-arguments
 ;   listof string -> hash-table

@@ -39,10 +39,12 @@
     (local-ip local-port remote-ip remote-port)
     (tcp-addresses in #t))
   (define op
-    (make-operator in out remote-ip remote-port
+    (make-operator server in out remote-ip remote-port
                    #:world (mudserver-world server)))
   (set-operator-command! op 'commands (make-commands-command op))
   (set-operator-command! op 'look (make-look-command op))
+  (set-operator-command! op 'set-name! (make-set-name!-command op))
+  (set-operator-command! op 'who (make-who-command op))
   (set-mudserver-active-operators!
    server
    (append (mudserver-active-operators server)
@@ -58,7 +60,9 @@
     (set-operator-command! op 'new-area!
                            (make-new-area!-command op))
     (set-operator-command! op 'set-area-name!
-                           (make-set-area-name!-command op)))
+                           (make-set-area-name!-command op))
+    (set-operator-command! op 'set-area-description
+                           (make-set-area-description!-command op)))
   (let ([spawn (world-ref (mudserver-world server)
                           '15fd6ad9-0632-4212-8c6b-968d0ff04e30)])
     (set-character-location! op spawn)
@@ -109,3 +113,12 @@
         (sleep clock-speed)
         (mudserver-loop)))))
   (mudserver-clock server))
+
+
+(define ((make-who-command op) args)
+  (message-operator!
+   op (format "~a"
+              (map
+               (λ (o) (character-name o))
+               (mudserver-active-operators
+                (operator-mudserver op))))))

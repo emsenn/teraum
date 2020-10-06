@@ -5,12 +5,22 @@
          "world.rkt")
 
 (provide make-new-area!-command
+         make-set-area-description!-command
          make-set-area-name!-command)
 
 (define ((make-set-area-name!-command op) args)
   (unless (hash-has-key? args 'line)
     (message-operator! op "Syntax: set-area-name! <new-name>"))
   (set-area-name! (character-location op)
+                  (hash-ref args 'line))
+  (save-area (character-location op)
+             (world-path (character-world op))))
+
+(define ((make-set-area-description!-command op) args)
+  (unless (hash-has-key? args 'line)
+    (message-operator!
+     op "Syntax: set-area-description! <new-description>"))
+  (set-area-description! (character-location op)
                   (hash-ref args 'line))
   (save-area (character-location op)
              (world-path (character-world op))))
