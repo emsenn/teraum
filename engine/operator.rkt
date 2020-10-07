@@ -1,7 +1,8 @@
 #lang racket
 
 (require uuid
-         "character.rkt")
+         "character.rkt"
+         "persistence.rkt")
 
 (provide (all-from-out "character.rkt")
          (struct-out operator)

@@ -14,17 +14,16 @@
                       [path #:mutable]))
 
 (define (make-world [path "world/"])
-  (world (make-hash) path))
+  (world '() path))
 
 (define (load-world this-world)
   (current-directory (world-path this-world))
   (map
-   (λ (area-id)
-     (printf "Loading area ~a" area-id)
+   (λ (place-id)
      (hash-set!
       (world-areas this-world)
-      area-id
-      (load-thing (world-path this-world) area-id)))
+      place-id
+      (load-thing (world-path this-world) place-id)))
    (map
     (λ (dir) (path->string dir))
     (directory-list (current-directory))))

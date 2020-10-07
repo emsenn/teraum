@@ -9,7 +9,6 @@
 
 (provide start-mudserver!)
 
-
 ; accept-mudserver-operator
 ;   mudserver -> void
 ; Creates a new mudsocket-operator for the new connection
@@ -26,6 +25,7 @@
                    #:world (mudserver-world server)))
   (set-operator-command! op 'commands (make-commands-command op))
   (set-operator-command! op 'look (make-look-command op))
+  (set-operator-command! op 'quit (make-quit-command op))
   (set-operator-command! op 'set-name! (make-set-name!-command op))
   (set-operator-command! op 'who (make-who-command op))
   (set-mudserver-active-operators!
@@ -46,8 +46,9 @@
                            (make-set-area-name!-command op))
     (set-operator-command! op 'set-area-description
                            (make-set-area-description!-command op)))
-  (let ([spawn (world-ref (mudserver-world server)
-                          "98ddf04d-1ad2-4644-9de4-af1aeb7003a6")])
+  (let ([spawn (find-thing
+                (mudserver-world server)
+                "98ddf04d-1ad2-4644-9de4-af1aeb7003a6")])
     (set-character-location! op spawn)
     (add-thing-to-area! op spawn)))
 
@@ -82,10 +83,11 @@
   (when (tcp-accept-ready? (mudserver-tcp-listener server))
     (accept-mudserver-operator server)))
 
+
 ; start-mudserver: mudserver -> thread
 ; Takes a MUDSocket server and returns a thread looping over
 ; handle-mudserver-operators every CLOCK-SPEED seconds.
-(define (start-mudserver! server [clock-speed 0.2])
+(define (start-mudserver! server op-dir [clock-speed 0.2])
   (set-mudserver-clock!
    server
    (thread
@@ -105,3 +107,5 @@
                (λ (o) (character-name o))
                (mudserver-active-operators
                 (operator-mudserver op))))))
+(define ((make-quit-command op) args)
+  (remove-mudserver-operator (operator-mudserver op) op))

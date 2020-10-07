@@ -1,11 +1,11 @@
 #lang racket
 
-(require "engine/mudserver.rkt"
-         "engine/mudserver-struct.rkt"
-         "engine/world.rkt")
+(require "engine/mudserver-struct.rkt"
+         "engine/mudserver.rkt"
+         "engine/persistence.rkt")
 
 (define teraum (make-mudserver
-                (load-world
-                 (make-world "/home/emsenn/dev/teraum/world/"))))
+                (load-things "/home/emsenn/dev/teraum/world/")
+                (load-things "/home/emsenn/dev/teraum/operators/")))
 
 (start-mudserver! teraum 0.2)

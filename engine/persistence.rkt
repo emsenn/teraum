@@ -7,6 +7,7 @@
 
 (provide save-thing
          load-thing
+         load-things
          make-thing-persistent)
 
 (define (save-thing given-path given-thing)
@@ -19,6 +20,14 @@
   (current-directory given-path)
   (with-input-from-file given-thing
     (λ () (deserialize (read)))))
+
+(define (load-things given-path)
+  (current-directory given-path)
+  (map
+   (λ (file-id) (load-thing given-path file-id))
+   (map
+    (λ (d) (path->string d))
+    (directory-list (current-directory)))))
 
 (define (generate-id given-path)
   (current-directory given-path)

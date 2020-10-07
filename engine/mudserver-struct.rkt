@@ -10,6 +10,7 @@
 ; - clock (thread)
 (struct mudserver
   ([tcp-listener]
+   [known-operators #:mutable]
    [active-operators #:mutable]
    [world #:mutable]
    [tick #:mutable]
@@ -17,5 +18,5 @@
 
 ; make-mudserver
 ;   [int] -> mudserver
-(define (make-mudserver world #:port [port 4242])
-  (mudserver (tcp-listen port 5 #t) '() world 0 (void)))
+(define (make-mudserver world operators #:port [port 4242])
+  (mudserver (tcp-listen port 5 #t) operators '() world 0 (void)))
