@@ -61,8 +61,7 @@
         (hash-set! results argument-key argument-value)]
        [(string=? (substring argument 0 1) "-")
         (map
-         (λ (character)
-           (hash-set! results character #t))
+         (λ (character) (hash-set! results character #t))
          (string->list (substring argument 1)))]
        [else
         (hash-set!
@@ -73,8 +72,7 @@
            [else (list argument)]))]))
    arguments)
   (when (hash-has-key? results 'line)
-    (hash-set! results 'line
-               (string-join (hash-ref results 'line))))
+    (hash-set! results 'line (string-join (hash-ref results 'line))))
   results)
 
 ; parse-mudsocket-operator-line
@@ -98,18 +96,14 @@
 ;   operator string -> void
 ; Sends operator the string through eir operator-out.
 (define (message-operator! op line)
-  (printf "Messaging ~a: ~a\n" (character-name op) line)
   (with-handlers
     ([exn?
-      (λ (e)
-        (log-warning "Sending operator line failed: ~a"
-                     e))])
+      (λ (e) (log-warning "Sending operator line failed: ~a" e))])
     (display
-     (format
-      (if (eq? #\newline (last (string->list line)))
-          "~a"
-          "~a\n")
-      line)
+     (format (if (eq? #\newline (last (string->list line)))
+                 "~a"
+                 "~a\n")
+             line)
      (operator-out op))
     (flush-output (operator-out op))))
 

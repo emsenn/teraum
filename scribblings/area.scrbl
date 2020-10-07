@@ -15,10 +15,7 @@
 
 Areas of the representation of places in which characters and objects can exist: the marches of a county, a town, or a closet.
 
-@defstruct[area ([id string?]
-		 [name string?]
-		 [description string?]
-		 [contents list?]
+@defstruct[area ([contents list?]
 		 [exits hash?])]{
 A structure type for areas, the places of the MUD world.
 }
