@@ -1,7 +1,9 @@
 #lang racket
 
 (require "area.rkt"
+         "mudserver-struct.rkt"
          "operator.rkt"
+         "persistence.rkt"
          "world.rkt")
 
 (provide make-new-area!-command
@@ -11,19 +13,22 @@
 (define ((make-set-area-name!-command op) args)
   (unless (hash-has-key? args 'line)
     (message-operator! op "Syntax: set-area-name! <new-name>"))
-  (set-area-name! (character-location op)
+  (set-thing-name! (character-location op)
                   (hash-ref args 'line))
-  (save-world-area (character-world op)
-                   (character-location op)))
+  (save-thing (world-path
+               (mudserver-world
+                (operator-mudserver op)))
+              (character-location op)))
 
 (define ((make-set-area-description!-command op) args)
   (unless (hash-has-key? args 'line)
     (message-operator!
      op "Syntax: set-area-description! <new-description>"))
   (set-area-description! (character-location op)
-                  (hash-ref args 'line))
-  (save-world-area (character-world op)
-                   (character-location op)))
+                         (hash-ref args 'line))
+  (save-thing
+   (world-path (mudserver-world (operator-mudserver op)))
+   (character-location op)))
 
 (define ((make-new-area!-command op) args)
   (unless (hash-has-key? args "exit")
@@ -32,15 +37,16 @@
     (make-area #:name (if (hash-has-key? args 'line)
                           (hash-ref args 'line)
                           "new area")))
+  (define save-path
+    (world-path (mudserver-world (operator-mudserver op))))
   (set-area-exit! (character-location op)
                   (hash-ref args "exit")
-                  (area-id new-area))
+                  (thing-id new-area))
   (set-area-exit! new-area
                   "back"
-                  (area-id (character-location op)))
-  (save-world-area (character-world op)
-                   (character-location op))
-  (save-world-area (character-world op)
-                   new-area)
+                  (thing-id (character-location op)))
+  (make-thing-persistent save-path new-area)
+  (save-thing save-path (character-location op))
+  (save-thing save-path new-area)
   (message-operator!
    op "Successfully made and linked new area."))

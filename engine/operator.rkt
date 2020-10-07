@@ -42,7 +42,7 @@
                        #:inventory [inventory '()]
                        #:commands [commands (make-hash)])
   (operator
-   (uuid-string) name description world location inventory
+   (uuid-string) name description location inventory
    this-mudserver in out ip port commands))
 
 ; parse-arguments

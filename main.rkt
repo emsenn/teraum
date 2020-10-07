@@ -1,6 +1,7 @@
 #lang racket
 
 (require "engine/mudserver.rkt"
+         "engine/mudserver-struct.rkt"
          "engine/world.rkt")
 
 (define teraum (make-mudserver

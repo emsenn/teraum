@@ -3,16 +3,18 @@
 (require racket/serialize
          uuid)
 
-(provide (struct-out area)
+(require "thing.rkt")
+
+(provide (all-from-out "thing.rkt")
+         (struct-out area)
          make-area
          area-exit
          set-area-exit!
          add-thing-to-area!)
 
 (serializable-struct area
-                     ([id #:mutable]
-                      [name #:mutable]
-                      [description #:mutable]
+                     thing
+                     ([description #:mutable]
                       [contents #:mutable]
                       [exits #:mutable]))
 
@@ -21,7 +23,7 @@
                    #:contents [contents #f]
                    #:exits [exits #f])
   (define new-area
-    (area (uuid-string) name description '() (make-hash)))
+    (area 0 name description '() (make-hash)))
   new-area)
 
 (define (area-exit this-area exit-key)

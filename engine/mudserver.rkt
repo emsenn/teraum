@@ -3,29 +3,12 @@
 (require "area.rkt"
          "basic-commands.rkt"
          "creator-commands.rkt"
+         "mudserver-struct.rkt"
          "operator.rkt"
          "world.rkt")
 
-(provide (struct-out mudserver)
-         make-mudserver
-         start-mudserver!)
+(provide start-mudserver!)
 
-; A mudserver is a
-; - tcp-listener (object? i think)
-; - active-operators (listof mudsocket-operator)
-; - tick (integer)
-; - clock (thread)
-(struct mudserver
-  ([tcp-listener]
-   [active-operators #:mutable]
-   [world #:mutable]
-   [tick #:mutable]
-   [clock #:mutable]))
-
-; make-mudserver
-;   [int] -> mudserver
-(define (make-mudserver world #:port [port 4242])
-  (mudserver (tcp-listen port 5 #t) '() world 0 (void)))
 
 ; accept-mudserver-operator
 ;   mudserver -> void
@@ -64,7 +47,7 @@
     (set-operator-command! op 'set-area-description
                            (make-set-area-description!-command op)))
   (let ([spawn (world-ref (mudserver-world server)
-                          '15fd6ad9-0632-4212-8c6b-968d0ff04e30)])
+                          "98ddf04d-1ad2-4644-9de4-af1aeb7003a6")])
     (set-character-location! op spawn)
     (add-thing-to-area! op spawn)))
 

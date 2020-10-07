@@ -19,7 +19,7 @@
       (message-operator!
        op
        (format "[  ~a  ]\n~a~a"
-               (area-name (character-location op))
+               (thing-name (character-location op))
                (area-description (character-location op))
                (if (null? (hash-keys
                            (area-exits (character-location op))))
