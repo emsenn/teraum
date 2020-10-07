@@ -13,7 +13,8 @@ You move south, to: desolate village
   Exits: north, south
 > look
 [  desolate village  ]
-Small buildings, basically sheaves of cattail leaves on stilts, are gathered together here. There's no one around.
+Small buildings, basically sheaves of cattail leaves on stilts, are
+gathered together here. There's no one around.
   Exits: north, south
 ```
 
