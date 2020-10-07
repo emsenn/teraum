@@ -19,6 +19,7 @@
 ; - out (???)
 ; - ip (???)
 ; - port (???)
+; - parser (procedure)
 ; - commands (hash-table)
 (struct operator
   character
@@ -27,6 +28,7 @@
    [out]
    [ip]
    [port]
+   [parser #:mutable]
    [commands #:mutable]))
 
 (define (make-operator this-mudserver
@@ -34,6 +36,7 @@
                        out
                        ip
                        port
+                       [parser parse-operator-line]
                        #:name [name "operator"]
                        #:description
                        [description "This is an operator."]
@@ -44,7 +47,7 @@
                        #:commands [commands (make-hash)])
   (operator
    (uuid-string) name description location inventory
-   this-mudserver in out ip port commands))
+   this-mudserver in out ip port parser commands))
 
 ; parse-arguments
 ;   listof string -> hash-table
