@@ -14,12 +14,7 @@
   (thing 0 name))
 
 (define (find-thing given-list given-id)
-  (printf "Looking at list ~a"
-          (map
-           (λ (q) (thing-id q))
-           given-list))
    (findf
     (λ (q)
-      (printf "Looking at ~a" (thing-id q))
       (string=? (thing-id q) given-id))
     given-list))

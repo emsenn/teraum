@@ -11,6 +11,8 @@
          make-thing-persistent)
 
 (define (save-thing given-path given-thing)
+  (printf "saving ~a to ~a" (thing-name given-thing)
+          given-path)
   (current-directory given-path)
   (with-output-to-file (thing-id given-thing)
     (λ () (write (serialize given-thing)))

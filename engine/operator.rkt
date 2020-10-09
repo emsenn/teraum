@@ -2,11 +2,14 @@
 
 (require uuid
          "character.rkt"
-         "persistence.rkt")
+         "mudserver-struct.rkt"
+         "persistence.rkt"
+         "user.rkt")
 
 (provide (all-from-out "character.rkt")
          (struct-out operator)
          make-operator
+         make-parse-operator-login-line
          parse-operator-line
          message-operator!
          operator-command
@@ -24,6 +27,7 @@
 (struct operator
   character
   ([mudserver]
+   [user #:mutable]
    [in]
    [out]
    [ip]
@@ -36,7 +40,7 @@
                        out
                        ip
                        port
-                       [parser parse-operator-line]
+                       [parser (make-parse-operator-login-line)]
                        #:name [name "operator"]
                        #:description
                        [description "This is an operator."]
@@ -47,7 +51,7 @@
                        #:commands [commands (make-hash)])
   (operator
    (uuid-string) name description location inventory
-   this-mudserver in out ip port parser commands))
+   this-mudserver #f in out ip port parser commands))
 
 ; parse-arguments
 ;   listof string -> hash-table
@@ -78,6 +82,52 @@
   (when (hash-has-key? results 'line)
     (hash-set! results 'line (string-join (hash-ref results 'line))))
   results)
+
+(define (make-parse-operator-login-line)
+  (define stage 0)
+  (λ (op line)
+    (cond
+      [(= stage 0)
+       (define extant-user
+         (findf
+          (λ (u) (string=? (thing-name u) line))
+          (users-listing (mudserver-users (operator-mudserver op)))))
+       (cond
+         [extant-user
+          (message-operator!
+           op
+           (format "A user account exists for \"~a\". Please enter the password to log in as ~a's character, or disconnect (and reconnect to try again.)" line line))
+          (set-thing-name! op line)
+          (set-operator-user! op extant-user)
+          (set! stage 1)]
+         [else
+          (define new-user (make-user line))
+          (make-thing-persistent
+           (users-path (mudserver-users (operator-mudserver op)))
+           new-user)
+          (set-mudserver-users!
+           (operator-mudserver op)
+           (make-users
+            (users-path (mudserver-users (operator-mudserver op)))))
+          (set-operator-user! op new-user)
+          (message-operator!
+           op
+           (format "No user account exists for \"~a\": one has been created, and its password is ~a\n(Write that down!)\n\nPress ENTER to complete login." line (user-pass new-user)))
+          (set! stage 9)])]
+      [(= stage 1)
+       (cond
+         [(string=? (user-pass (operator-user op)) line)
+          (message-operator! op "Password correct. Press ENTER.")
+          (set! stage 9)]
+         [else
+          (message-operator!
+           op
+           "Password incorrect. Enter [desired] username.")
+          (set! stage 0)])]
+      [(= stage 9)
+       (set-operator-parser! op parse-operator-line)
+       (message-operator! op "You're logged in!")])))
+
 
 ; parse-mudsocket-operator-line
 ;   operator string -> void

@@ -39,13 +39,13 @@
                           "new area")))
   (define save-path
     (world-path (mudserver-world (operator-mudserver op))))
+  (make-thing-persistent save-path new-area)
   (set-area-exit! (character-location op)
                   (hash-ref args "exit")
                   (thing-id new-area))
   (set-area-exit! new-area
                   "back"
                   (thing-id (character-location op)))
-  (make-thing-persistent save-path new-area)
   (save-thing save-path (character-location op))
   (save-thing save-path new-area)
   (message-operator!

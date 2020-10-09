@@ -3,13 +3,14 @@
 (require racket/serialize
          uuid)
 
+(require "thing.rkt")
 
-(provide (struct-out character))
+(provide (all-from-out "thing.rkt")
+         (struct-out character))
 
 (serializable-struct character
-                     ([id #:mutable]
-                      [name #:mutable]
-                      [description #:mutable]
+                     thing
+                     ([description #:mutable]
                       [location #:mutable]
                       [inventory #:mutable]))
 

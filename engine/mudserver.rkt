@@ -25,17 +25,19 @@
                    #:world (mudserver-world server)))
   (set-operator-command! op 'commands (make-commands-command op))
   (set-operator-command! op 'look (make-look-command op))
+  (set-operator-command! op 'move (make-move-command op))
   (set-operator-command! op 'quit (make-quit-command op))
-  (set-operator-command! op 'set-name! (make-set-name!-command op))
+  ;(set-operator-command! op 'set-name! (make-set-name!-command op))
   (set-operator-command! op 'who (make-who-command op))
-  (set-mudserver-active-operators!
+  (set-operator-command! op 'whoami (make-whoami-command op))
+  (set-mudserver-operators!
    server
-   (append (mudserver-active-operators server)
+   (append (mudserver-operators server)
            (list op)))
   (message-operator!
    op
    (format
-    "Your connection to Teraum from ~a has been accepted."
+    "Your connection to Teraum from ~a has been accepted.\nType your [desired] user-name and press ENTER"
     (format "~a:~a" (operator-ip op) (operator-port op))))
   (when (string=? (operator-ip op) "::1")
     (message-operator!
@@ -47,16 +49,16 @@
     (set-operator-command! op 'set-area-description
                            (make-set-area-description!-command op)))
   (let ([spawn (find-thing
-                (mudserver-world server)
+                (world-areas (mudserver-world server))
                 "98ddf04d-1ad2-4644-9de4-af1aeb7003a6")])
     (set-character-location! op spawn)
     (add-thing-to-area! op spawn)))
 
 
 (define (remove-mudserver-operator server op)
-  (set-mudserver-active-operators!
+  (set-mudserver-operators!
    server
-   (remove op (mudserver-active-operators server)))
+   (remove op (mudserver-operators server)))
   (close-input-port (operator-in op))
   (close-output-port (operator-out op)))
 
@@ -67,19 +69,18 @@
        [(port-closed? (operator-in op))
         (remove-mudserver-operator server op)]
        [(byte-ready? (operator-in op))
-        (with-handlers
-          ([exn:fail?
-            (λ (e)
-              (log-warning "MUDSocket server encountered issue: ~a"
-                           e))])
           (define op-line
             (read-line (operator-in op)))
           (cond
             [(string? op-line)
-             (parse-operator-line op op-line)]
+             ((operator-parser op)
+              op
+              (list->string
+               (remove* (list #\return #\newline)
+                        (string->list op-line))))]
             [(eof-object? op-line)
-             (remove-mudserver-operator server op)]))]))
-   (mudserver-active-operators server))
+             (remove-mudserver-operator server op)])]))
+   (mudserver-operators server))
   (when (tcp-accept-ready? (mudserver-tcp-listener server))
     (accept-mudserver-operator server)))
 
@@ -104,8 +105,8 @@
   (message-operator!
    op (format "~a"
               (map
-               (λ (o) (character-name o))
-               (mudserver-active-operators
+               (λ (o) (thing-name o))
+               (mudserver-operators
                 (operator-mudserver op))))))
 (define ((make-quit-command op) args)
   (remove-mudserver-operator (operator-mudserver op) op))
